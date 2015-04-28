@@ -1,0 +1,44 @@
+https://drive.google.com/file/d/0B1IAq2-wyMBVUjQ2bTFkR0hFbEU/view?usp=sharing
+https://drive.google.com/file/d/0B1IAq2-wyMBVS19iTk9Tb25nVjQ/view?usp=sharing
+https://drive.google.com/file/d/0B1IAq2-wyMBVbXpINDAwZEZMTmM/view?usp=sharing
+https://drive.google.com/file/d/0B1IAq2-wyMBVYlFmc3lYbGt4QmM/view?usp=sharing
+
+(1) Describe deposit, branch.
+
+(2) Describe borrow, customers.
+
+(3) List all data from table DEPOSIT.
+
+(4) List all data from table BORROW.
+
+(5) List all data from table CUSTOMERS.
+
+(6) List all data from table BRANCH.
+
+(7) Give account no and amount of depositors.
+
+(8) Give name of depositors having amount greater than 4000.
+
+(9) Give name of customers who opened account after date '1-12-96'.
+
+(10) Give the name of depositors who has minimum balance.
+
+(11) Give the name of depositors who has maximum balance.
+
+(12) Find the total amount deposited by customers.
+
+(13) Find the total amount borrowed by customers.
+
+(14) Give name of depositors having amount greater than average amount.
+
+(15) Find the name of customers from Bombay and Nagpur.
+
+(16) Find the name of branches from Delhi, Nagpur and Banglore.
+
+(17) Find the average amount of depositor and borrower.
+
+(18) Find the number of customers from Bombay.
+
+(19) Find the number of branches from Delhi and Nagpur.
+
+(20) To display the current date.

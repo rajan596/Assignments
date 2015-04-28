@@ -1,0 +1,177 @@
+//################################# 1 ################################
+create table deposit(
+actno integer primary key,
+cname varchar(20),
+bname varchar(20),
+amount float,
+adate date
+);
+
+create table branch(
+bname varchar(20) primary key,
+city varchar(20)
+);
+
+//############################ 2 #####################################
+create table customers(
+cname varchar(20) primary key,
+city varchar(20)
+);
+
+create table borrow(
+loanno integer primary key,
+cname varchar(20),
+bname varchar(20),
+amount float
+);
+
+############################ 3 #######################################
+SELECT * FROM deposit;
+
+############################ 4 #######################################
+SELECT * FROM borrow;
+
+############################ 5 #######################################
+SELECT * FROM customers;
+
+############################ 6 #######################################
+SELECT * FROM branch;
+
+############################ 7 #######################################
+SELECT actno,amount FROM deposit;
+
+############################ 8 #######################################
+SELECT cname FROM deposit 
+ WHERE amount > 4000;
+
+############################ 9 ####################################### 
+SELECT cname 
+ FROM deposit 
+ WHERE adate > '01-DEC-96';
+
+############################ 10 #######################################
+SELECT cname
+ FROM deposit
+ WHERE amount = (SELECT MIN(amount)
+                FROM deposit);
+
+############################ 11 #######################################
+SELECT cname
+ FROM deposit
+ WHERE amount = (SELECT MAX(amount)
+                FROM deposit);
+                
+############################ 12 #######################################
+SELECT SUM(amount)
+ FROM deposit;
+
+############################ 13 #######################################
+SELECT SUM(amount)
+ FROM borrow;
+
+############################ 14 #######################################
+SELECT cname
+ FROM deposit
+ WHERE amount > (SELECT AVG(amount) 
+                FROM deposit);
+
+############################ 15 #######################################
+SELECT cname 
+ FROM customers 
+ WHERE city='bombay' OR city='nagpur';
+
+############################ 16 ####################################### 
+SELECT bname,city 
+ FROM branch 
+ WHERE city='NAGPUR' OR city='DELHI' OR city='BANGLORE';
+
+############################ 17 #######################################
+SELECT AVG(d.amount) , AVG(b.amount)
+ FROM deposit d, borrow b;
+
+############################ 18 ####################################### 
+SELECT COUNT(cname)
+ FROM customers
+ WHERE city='bombay';
+
+############################ 19 #######################################
+SELECT COUNT(bname)
+ FROM branch
+ WHERE city='DELHI' OR
+       city='NAGPUR';
+
+############################ 20 ####################################### 
+select current_timestamp from dual;   // dual will create table having ine row and one column
+select sysdate from dual
+
+###################################################################### table create and insert
+create table deposit
+(
+actno integer primary key,
+cname varchar(20),
+bname varchar(20),
+amount float,
+adate date
+);
+
+
+create table branch(
+bname varchar(20) primary key,
+city varchar(20)
+);
+
+create table customers(
+cname varchar(20) primary key,
+city varchar(20)
+);
+
+create table borrow(
+loanno integer primary key,
+cname varchar(20),
+bname varchar(20),
+amount float
+);
+
+INSERT INTO borrow VALUES('201','anil','vrce','1000.00');
+INSERT INTO borrow VALUES('206','mehul','ajni','5000.00');
+INSERT INTO borrow VALUES('311','sunil','dharampeth','3000.00');
+INSERT INTO borrow VALUES('321','madhuri','andheri','2000.00');
+INSERT INTO borrow VALUES('375','prmod','virar','8000.00');
+INSERT INTO borrow VALUES('481','kranti','nehru place','3000.00');
+
+----------------------------------------------
+
+insert into deposit values(100,'ANIL','VRCE',1000.00,'1-MAR-95');
+
+insert into deposit values(101	,'SUNIL' ,'AKNI',	5000.00	,'4-JAN-96');
+insert into deposit values(102	,'MEHUL' ,'KAROLBAGH',	3500.00	,'17-NOV-95');
+insert into deposit values(104, 'MADHURI','CHANDI',1200.00,'17-DEC-95');
+insert into deposit values(105,'PRMOD','M.G.ROAD',3000.00,'27-MAR-96');
+insert into deposit values(106,'SANDIP','ANDHERI',2000.00,'31-MAR-96');
+insert into deposit values(107,'SHIVANI','VIRAR',1000.00,'5-SEP-95');
+insert into deposit values(108,'KRANTI','NEHRU PLACE',5000.00,'2-JUL-95');
+insert into deposit values(109,'MINU','POWAI',7000.00,'10-AUG-95');
+
+
+---------------------------------------------
+INSERT INTO customers VALUES('anil','calcutta');
+INSERT INTO customers VALUES('sunil','delhi');
+INSERT INTO customers VALUES('mehul','baroda');
+INSERT INTO customers VALUES('mandar','patna');
+INSERT INTO customers VALUES('madhuri','nagpur');
+INSERT INTO customers VALUES('pramod','nagpur');
+INSERT INTO customers VALUES('sandip','surat');
+INSERT INTO customers VALUES('shivani','bombay');
+INSERT INTO customers VALUES('kranti','bombay');
+INSERT INTO customers VALUES('naren','bombay');
+
+insert into BRANCH values('VRCE','NAGPUR');
+insert into BRANCH values('AJNI','NAGPUR');
+insert into BRANCH values('KAROLBAGH','DELHI');
+insert into BRANCH values('CHANDI','DELHI');
+insert into BRANCH values('DHARAMPETH','NAGPUR');
+insert into BRANCH values('M.G.ROAD','BANGLORE');
+insert into BRANCH values('ANDHERI','BOMBAY');
+insert into BRANCH values('VIRAR','BOMBAY');
+insert into BRANCH values('NEHRU PLACE','DELHI');
+insert into BRANCH values('POWAI','BOMBAY');

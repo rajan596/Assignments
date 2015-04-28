@@ -1,0 +1,117 @@
+###################### 1 #########################
+create table employee(
+emp_no integer primary key,
+emp_name varchar(50) NOT NULL,
+emp_join_Date date DEFAULT sysdate,
+emp_status char(1)
+);
+
+create table project(
+project_code varchar(5) primary key,
+project_description varchar(100) NOT NULL UNIQUE , 
+project_start_date date NOT NULL,
+project_end_date date
+);
+
+create table project_allocation(
+project_code varchar(5),
+emp_no integer,
+emp_proj_alloc_date date, 
+emp_proj_release_date date DEFAULT NULL,
+primary key(project_code,emp_no)
+);
+
+###################### 2 #########################
+insert into employee values(101,'Jhonny','1-jul-2005','C');
+insert into employee values(116,'Nayak','16-aug-2005','C');
+insert into employee values(202,'Meera','30-jan-2006','C');
+insert into employee values(205,'Ravi','11-feb-2006','C');
+insert into employee values(304,'Hari','25-nov-2006','P');
+insert into employee values(307,'Nancy','15-jan-2007','P');
+insert into employee values(403,'Nick','21-jan-2007','P');
+
+###################### 3 #########################
+insert into project values('p001','Environment Pollution','2-aug-2005','11-dec-2006');
+insert into project values('p002','Learning Curve','1-feb-2006','');
+insert into project values('p003','Effects of IT','3-jan-2007','');
+
+###################### 4 #########################
+insert into project_allocation values ('p001','101','01-aug-2005','11-dec-2006');
+insert into project_allocation values ('p001','116','16-aug-2005','11-dec-2006');
+insert into project_allocation values ('p002','202','01-feb-2006','14-jan-2007');
+insert into project_allocation values ('p002','307','15-jan-2007','');
+insert into project_allocation values ('p002','205','11-feb-2006','');
+insert into project_allocation values ('p003','403','21-jan-2007','');
+insert into project_allocation values ('p003','304','03-jan-2007','');
+insert into project_allocation values ('p003','101','03-jan-2007','');
+insert into project_allocation values ('p003','116','03-jan-2007','');
+insert into project_allocation values ('p003','202','15-jan-2007','');
+
+###################### 5 #########################
+1=>
+select * from project;
+
+2=>
+select * from employee;
+
+3=>
+select * from employee where emp_status='C';
+
+4=>
+select * from employee where emp_join_Date>'01-nov-2006';
+
+5=>
+select * from project where project_start_date>'01-jan-2006';
+
+6=>
+select *  
+ from employee  e,project_allocation  p
+ where e.emp_no=p.emp_no and p.project_code='p003';
+ 
+7=>
+select * from project where project_end_date is null;
+ 
+8=>
+select * 
+ from employee e,project_allocation p
+ where e.emp_no=p.emp_no and p.project_code='p002' and emp_proj_release_date is not null;
+ 
+9=>
+select p.project_end_date - p.project_start_date 
+ from project p
+ where p.project_code='p001';
+ 
+10=>
+select p.emp_no,p.project_code,p.emp_proj_release_date - p.emp_proj_alloc_date
+ from employee e,project_allocation p
+ where e.emp_no=p.emp_no and p.emp_proj_release_date is not null;
+ 
+###################### 6 #########################
+alter table project ADD project_manager varchar(100);
+ 
+######################  7 #########################
+update project set project_manager='101' where project_code='p001';
+update project set project_manager='202' where project_code='p002';
+update project set project_manager='116' where project_code='p003';
+
+######################  8 ##########################
+insert into project values('p010','Election Rage','01-mar-2007','','');
+
+
+######################  9 ##########################  NOT VERIFIED
+delete from project
+ where project_description='Election Rage';
+
+######################  10 ######################### NOT VERIFIED
+select *
+ from project
+ where project_end_date - project_start_date > 13*30;
+
+######################  11 ######################### NOT VERIFIED
+select * 
+ from project_allocation
+ where emp_proj_alloc_date < '01-feb-2007' and
+ emp_proj_release_date >'01-feb-2007'
+ group by project_code;
+
+

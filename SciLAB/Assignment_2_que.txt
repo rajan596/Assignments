@@ -1,0 +1,30 @@
+Learn looping and conditional statement in scilab and write a program for following.
+
+1. Check value of variable -ve,+ve or zero using if-else
+2. Display 1 to 5 using while and for loop.
+3. Addition and Multiplication of two matrix using loop.
+4. Find Transpose of matrix using loop.
+5. To print reverse of given no.
+6. To find out, a) sum of first digit and last digit of a given number. b) Largest digit in a given number (number=1234 , 4 is larger )
+7. Sum two columns/rows of a given matrix (column/row number given by user)
+8. Print matrix indices of a number which is divisible by 5 or 7 in a given matrix.
+9. 
+10. List all prime number with their indices from a given matrix.
+11. Check whether the given no is perfect or not. (A perfect is number has 123=1*2*3=6 and 1+2+3 = 6).
+12. To print a fibonacci series.
+13. To delete a duplicate numbers from a matrix.
+14. To check whether a given matrix is a magic square or not(hint: Sum of columns, rows and diagonals are equal).
+15. Print the following patterns.
+      * 
+    * * 
+   * * *
+  * * * *
+        5
+       4 4  
+     3  3  3 
+    2  2  2  2 
+  1  1  1  1  1
+       A
+      B C
+     D E F
+    G H I J

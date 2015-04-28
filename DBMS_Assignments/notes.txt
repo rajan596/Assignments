@@ -1,0 +1,20 @@
+// My sql
+
+1. use HAVING with only GROUP BY. Don't Use it instead of WHERE clause
+   DON'T DO THIS : SELECT cust_id FROM customer HAVING surname="Kelvin";
+         DO THIS : SELECT cust_id FROM customer WHERE  surname="Kelvin";
+   
+   Reason : HAVING clause is very slow .   
+
+2. If you want to use WHERE , HAVING , ORDER BY , GROUP By in a single query then order should be
+  WHERE     : it will pick appropriate rows
+  GROUP BY  : it will grouping rows by appliying condition in HAVING clause
+  HAVING    : 
+  ORDER BY  : At last it will sort grouped rows
+  
+  Exa:
+    SELECT city,surname,firstname,count(*) 
+    FROM customer
+    WHERE state="ABC"
+    GROUP BY surname,firstname HAVING count(*)>2
+    ORDER BY city;

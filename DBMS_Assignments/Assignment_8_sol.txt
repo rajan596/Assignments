@@ -1,0 +1,189 @@
+NOTE : press '/' for output at the end ....
+
+// start
+
+set serveroutput on
+
+// QUE : 1
+
+begin
+ dbms_output.put_line('hello world');
+ end;
+ /
+
+// QUE : 2
+
+DECLARE
+ a integer;
+ b integer;
+ i integer;
+ 
+ BEGIN
+ a:=&a;
+ b:=&b;
+ 
+ for i in a..b
+ loop
+ if(i mod 2=0)
+    then
+    dbms_output.put_line(i || '  EVEN');
+ end if;
+ end loop;
+ END;
+ 
+// QUE : 3
+
+DECLARE
+ a integer;
+ fact integer;
+ i integer;
+
+ BEGIN
+ a:=&a;
+ fact:=1;
+ 
+ for i in 1..a
+ loop
+   fact:=fact*i;
+ end loop;
+ 
+ dbms_output.put_line(fact);
+ END;
+ 
+// QUE : 4
+
+DECLARE
+ isprime integer;
+ a integer;
+ i integer;
+
+ BEGIN
+    a:=&a;
+    isprime:=1;
+ 
+    for i in 2..a/2
+    loop
+    
+      if ( a mod i = 0)
+      then
+        isprime:=0;
+      end if;
+    end loop;
+    
+    if isprime=1 then
+      dbms_output.put_line('PRIME');
+    else
+      dbms_output.put_line('NOT PRIME');
+    end if;
+ END;
+ 
+// QUE : 5
+
+DECLARE
+ a integer;
+ b integer;
+ c integer;
+ i integer;
+
+ BEGIN
+   a:=&a;
+   b:=0;
+   c:=a; 
+  
+   while (a>0)
+   loop
+   i:=a mod 10;
+   a:=floor(a/10);
+   b:=b+ i*i*i;
+   
+   end loop;
+
+   if b=c then
+     dbms_output.put_line('ARMSTROMG');
+   else
+     dbms_output.put_line('NOT ARMSTROMG');
+   end if;
+
+ END;
+
+// QUE : 6
+
+DECLARE
+ a integer;
+ rev integer;
+ i integer;
+
+ BEGIN
+   a:=&a;
+   rev:=0;
+  
+   while (a>0)
+   loop
+   i:=a mod 10;
+   a:=floor(a/10);
+   rev:=rev*10+ i;
+   end loop;
+   
+  dbms_output.put_line(rev);
+
+ END;
+ 
+// QUE : 7
+
+DECLARE
+ a integer;
+ b integer;
+ i integer;
+
+ BEGIN
+   a:=&a;
+   b:=0;
+  
+   while (a>0)
+   loop
+   i:=a mod 10;
+   a:=floor(a/10);
+   b:=b + i;
+   end loop;
+   
+  dbms_output.put_line(b);
+
+ END;
+ 
+ // QUE : 8
+ 
+ DECLARE
+ i integer;
+ 
+ BEGIN
+    for i in 1..5
+    loop
+         dbms_output.put_line(3.14 * i * i);
+    end loop;
+ END;
+ 
+// QUE : 9                   // // incomplete
+DECLARE
+ a integer;
+ b integer;
+ c integer;
+
+ BEGIN
+ a:=&a;
+ b:=&b;
+ 
+ if(a>b) then
+     c=a;
+     a=b;
+     b=c;
+     
+     dbms_output.put_line('a>b :: swapping :: a=' || a || ' b : ' || b);
+ end if;
+ 
+ END;
+
+
+// QUE : 10
+
+
+ 

@@ -1,0 +1,38 @@
+//query 1
+select stcode1,stcode2
+from track
+where distance < 20;
+
+//query 2
+
+select id
+from trainhalts,station
+where trainhalts.stcode=station.stcode and station.name='GHATKOPAR';
+
+// query 3
+
+select train.name
+from train,trainhalts,station
+where station.name='MUMBAI' and 
+    station.stcode=trainhalts.stcode and 
+    trainhalts.id=train.id and 
+    trainhalts.seqno=0
+    order by train.name;
+    
+// query 4
+
+select s.stcode,s.name  
+from train t,station s,trainhalts th
+where t.id=th.id and 
+    th.stcode=s.stcode and 
+    t.name='CST-AMR_LOCAL';
+
+// query 5
+
+SELECT t.name
+FROM train t,trainhalts th,station s
+WHERE s.name='THANE' AND
+    s.stcode=th.stcode AND
+    th.id=t.id AND
+    th.seqno<6;
+    

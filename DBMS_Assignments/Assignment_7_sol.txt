@@ -1,0 +1,110 @@
+||||||||||||||||||||||||||||||||||||||||||| QUERY PENDING FOR VERIFICATION :-)
+
+##############################   QUE : 1  ||||||||||||  
+
+create table player(
+ playerid integer primary key,
+ name varchar(50),
+ position varchar(10),
+ height integer,
+ weight integer,
+ team varchar(30),
+ check(position in('Guard','Center','Forward')),
+ foreign key (team) reference team(name)
+ );
+ 
+
+create table team(
+ name varchar(30) primary key,
+ city varchar(20),
+ );
+ 
+create table game(
+ gameID integer primary key,
+ hometeam varchar(30),
+ awayteam varchar(30),
+ homescore integer,
+ awayscore integer,
+ foreign key (hometeam) reference team(name),
+ foreign key (awayteam) reference team(name),
+ check (hometeam <> awayteam)
+ );
+ 
+create table GameStats(
+ playerid integer,
+ gameid integer,
+ points integer,
+ assists integer,
+ rebounds integer,
+ primary key (playerid,gameid),
+ foreign key (gameid) reference game(gameid),
+ foreign key (playerid) reference player(playerid)
+ );
+ 
+ ##############################   QUE : 2  ||||||||||||  
+ 
+ ##############################   QUE : 3  ||||||||||||  
+ select * 
+  from team
+  where city like 'T%';
+  
+##############################   QUE : 4  ||||||||||||  
+select playerid,sum(points)
+ from gamestats
+ group by playerid;
+ 
+##############################   QUE : 5  ||||||||||||  
+select distinct name 
+ from player 
+ where position='Forward' and name like '%m%';
+ 
+##############################   QUE : 6  ||||||||||||  
+select * 
+ from team
+ group by name having count(*)>=2;
+
+##############################   QUE : 7  ||||||||||||  
+select team,playerid,name,height
+ from player as p1
+ where height >= all(select height 
+ from player as p2 
+ where p1.team=p2.team);
+
+##############################   QUE : 8  ||||||||||||  
+select playerid , avg(assists)
+ from gamestats
+ group by playerid;
+
+##############################   QUE : 9  ||||||||||||  
+select position, avg(height), avg(weight)
+ from player 
+ where team='Magic'
+ group by position;
+
+##############################   QUE : 10  ||||||||||||  
+select count()
+from gamestats natural join players using(playerid)
+where name='Arthur' and gameid in 
+(select gameid from gamestats natural join players using(playerid) where name='Jack')
+);
+
+##############################   QUE : 11  ||||||||||||  
+select playerid , name , count(*)
+ from gamestats as g, players as p
+ where p.playerid=g.playerid
+ group by playerid
+ having count(*)>=2;
+ 
+
+
+
+
+
+ 
+
+
+ 
+ 
+ 
+
+ 
