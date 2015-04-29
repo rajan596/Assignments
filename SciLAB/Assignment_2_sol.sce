@@ -41,12 +41,8 @@ disp(C)
 C=[0,0,0;0,0,0;0,0,0]
 for i=1:3              // matrix multiplication 
     for j=1:3
-        p=1,q=1
         for k=1:3
-            C(i,j)=C(i,j)+A(i,p)*B(q,j)
-            
-            p=p+1
-            q=q+1
+            C(i,j)=C(i,j)+A(i,k)*B(k,j)
         end
     end
 end
