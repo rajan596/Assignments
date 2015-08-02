@@ -1,0 +1,11 @@
+Databse Name : blog
+
+Table Names :
+1. users
+	id
+	username
+	firstname
+	password
+	emailid
+	createdon
+	
