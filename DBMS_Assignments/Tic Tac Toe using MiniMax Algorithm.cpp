@@ -66,7 +66,13 @@ int gameOver(char box[]) {
 /* Game Result*/
 void displayResult(char box[]) {
     int x=gameOver(box);
-    printf("\nPlayer %c WON\n",x==10?'X':'O');
+    if(x==10) {
+        printf("Player X won\n");
+    } else if(x==-10) {
+        printf("Player O won\n");
+    } else {
+        printf("....DRAW...\n");
+    }
     printMatrix(box);
     system("pause");
 }
