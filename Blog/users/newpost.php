@@ -1,10 +1,19 @@
 <?php
 
+session_start();
+
+/* If not logged in then redirect to login page */
+if(!isset($_SESSION['username']))
+{
+	header("location:login.php");
+}
+
 if(isset($_POST['submit'])) {
 
 	$postTitle=$_POST['title'];
 	$postDesc=$_POST['description'];
 	$postTag=$_POST['tag'];
+	$postAuthor=$_SESSION['username'];
 
 	/* Connection to database */
 	$conn =mysqli_connect("localhost","root","","blog");
@@ -16,11 +25,13 @@ if(isset($_POST['submit'])) {
 	} 
 
 	/* CHECK if same user or email exists or not ? */
-	$query="INSERT INTO posts (postTitle , postDesc , postTag)
-			VALUES ('$postTitle' , '$postDesc' , '$postTag') ";
+	$query="INSERT INTO posts (postTitle , postDesc , postTag , postAuthor)
+			VALUES ('$postTitle' , '$postDesc' , '$postTag' , '$postAuthor') ";
 	mysqli_query($conn , $query);
 
 	printf("Successfully posted your post\n");
+
+	
 	
 }
 

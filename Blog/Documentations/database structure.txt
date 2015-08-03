@@ -12,7 +12,7 @@ Table Names :
 2. posts
 	postID
 	postTitle
-	postDisc
+	postDesc
 	postTime
 	postTag
 	postAuthor
