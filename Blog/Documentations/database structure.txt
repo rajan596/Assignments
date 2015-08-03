@@ -9,3 +9,10 @@ Table Names :
 	emailid
 	createdon
 	
+2. posts
+	postID
+	postTitle
+	postDisc
+	postTime
+	postTag
+	postAuthor

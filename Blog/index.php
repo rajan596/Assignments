@@ -1,3 +1,5 @@
+<!--  HEADER -->
+
 <?php
 
 echo "Welcome to blog <br>";
@@ -12,9 +14,12 @@ if(isset($_SESSION['username'])) {
 	";
 }
 else {
-echo "
-	<a href='users/login.php' >Login</a>
-	<a href='users/register.php' >Register</a>
-";
+	echo "
+		<a href='users/login.php' >Login</a>
+		<a href='users/register.php' >Register</a>
+	";
 }
+
+echo "<a href='users/newpost.php'> New Post </a>";
+
 ?>
