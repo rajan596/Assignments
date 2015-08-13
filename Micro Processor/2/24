@@ -1,0 +1,35 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+;clear CY flag
+STC
+CMC
+
+; load data
+MVI B,0FFH
+MOV A,B
+ADI 01H
+MOV B,A
+
+;if carry is set then 01 o/p
+JNC ELSE
+MVI A,01H
+OUT 02H
+JMP LAST
+
+; IF CARRY IS 0
+ELSE: NOP
+MOV A,B
+OUT 02H
+HLT
+
+LAST: NOP
+hlt

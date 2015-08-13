@@ -1,0 +1,30 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI D,08EH
+MVI E,0F7H
+
+; MASK HIGHER ORDER DATA
+MOV A,D
+ANI 0FH
+MOV D,A
+
+MOV A,E
+ANI 0FH
+MOV E,A
+
+; XOR
+XRA D
+
+; RESULT IN PORT 02
+OUT 02
+
+hlt

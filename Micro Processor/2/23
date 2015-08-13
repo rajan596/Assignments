@@ -1,0 +1,29 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+;LOAD DATA
+MVI B,091H
+MVI C,087H
+
+; MASKING BITS
+MOV A,B
+ANI 01H
+MOV B,A
+
+MOV A,C
+ANI 01H
+MOV C,A
+
+;compare and show result in port
+ANA B
+OUT 01H
+
+hlt

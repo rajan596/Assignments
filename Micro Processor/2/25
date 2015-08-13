@@ -1,0 +1,30 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI B,042H
+MVI C,069H
+
+; B - C
+MOV A,B
+SUB C
+
+; IF CARRY==1
+JNC ELSE
+CMA
+ADI 01H
+OUT 01H
+HLT
+
+; IF CARRY==0
+ELSE: NOP 
+OUT 01H
+
+hlt

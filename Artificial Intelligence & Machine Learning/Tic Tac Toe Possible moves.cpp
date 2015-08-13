@@ -81,25 +81,11 @@ int main() {
 
             printf("Player %c :: ",currentPlayer=='O'?'O':'X');
 
-            printf("Valid moves : \n");
-            for(int i=0;i<3;i++) {
-                for(int j=0;i<3;j++) {
-                    if(mat[i][j]==' ') {
-                        mat[i][j]=currentPlayer;
-                        printMatrix();
-                        mat[i][j]=' ';
-                    }
-                }
-            }
-
             if(currentPlayer=='X') {  // Computer
-                while(1) {
-                    scanf("%d",&index);
+                do {
+                    index=rand()%9 + 1;
                     assignIndex(&i,&j,index);
-                    if(mat[i][j]!=' ')
-                        printf("Enter valid index : ");
-                    else break;
-                }
+                }while(mat[i][j]!=' ');
             }
             else {                    // You
                 while(1) {

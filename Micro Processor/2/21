@@ -1,0 +1,17 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: NOP
+	
+MVI C,0A8H
+MOV A,C
+ANI 0FH
+OUT 01
+
+hlt
