@@ -72,6 +72,10 @@ int main() {
         srand((unsigned)(&t));
 
         while(!gameOver(mat) && filled<9) {
+<<<<<<< HEAD
+=======
+            printf("**** CURRENT STATS *****\n");
+>>>>>>> origin/master
             printMatrix(mat);
 
             if(filled == 9) {
@@ -79,6 +83,7 @@ int main() {
                 break;
             }
 
+<<<<<<< HEAD
             printf("Player %c :: ",currentPlayer=='O'?'O':'X');
 
             if(currentPlayer=='X') {  // Computer
@@ -86,6 +91,31 @@ int main() {
                     index=rand()%9 + 1;
                     assignIndex(&i,&j,index);
                 }while(mat[i][j]!=' ');
+=======
+
+            printf("\nValid moves : \n");
+            for(int i=0;i<3;i++) {
+                for(int j=0;j<3;j++) {
+                    if(mat[i][j]==' ') {
+                        mat[i][j]=currentPlayer;
+                        printMatrix(mat);
+                        printf("---------------------\n");
+                        mat[i][j]=' ';
+                    }
+                }
+            }
+
+            printf("Player %c :: ",currentPlayer=='O'?'O':'X');
+
+            if(currentPlayer=='X') {  // Computer
+                while(1) {
+                    scanf("%d",&index);
+                    assignIndex(&i,&j,index);
+                    if(mat[i][j]!=' ')
+                        printf("Enter valid index : ");
+                    else break;
+                }
+>>>>>>> origin/master
             }
             else {                    // You
                 while(1) {
