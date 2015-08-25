@@ -16,36 +16,14 @@ false.
 
 5. Find all the grandchildren of Irene
 % grand(X,Z) :- parent(X,Y) , parent(Y,Z).
-grand(X,Y).
-X = albert,
-Y = brian ;
-X = albert,
-Y = lee ;
-X = albert,
-Y = sandra ;
-X = albert,
-Y = james ;
-X = albert,
-Y = kate ;
-X = albert,
-Y = kyle ;
-X = jim,
-Y = jenny ;
-X = irene,
-Y = brian ;
-X = irene,
-Y = lee ;
-X = irene,
-Y = sandra ;
-X = irene,
-Y = james ;
-X = irene,
-Y = kate ;
-X = irene,
-Y = kyle ;
-X = pat,
-Y = jenny ;
-false.
+grand(irene,X).
+Ans : 
+X = brian ;
+X = lee ;
+X = sandra ;
+X = james ;
+X = kate ;
+X = kyle.
 
 6. Now add the following rule to familytree.pl and re-consult:
   older(Person1, Person2) :-
@@ -116,12 +94,26 @@ Count1 = 8.
 
 
 % rules 
+
+% grand( irene , X)
 grand(X,Z) :- parent(X,Y) , parent(Y,Z).
+
+% if Person2 > Person1 => true
 older(Person1, Person2) :- yearOfBirth(Person1, Year1), yearOfBirth(Person2, Year2), Year2 > Year1.
+
+% sibbling(irene , X )
 sibbling(X,Y) :- parent(Z,X) , parent(Z,Y) , X\=Y.
+
+% olderbrother( irene ,  X )
 olderbrother(X,Y):- parent(Z,X) , parent(Z,Y) , X\=Y ,male(Y).
-predecessor(X,Z):-parent(Y,X),predecessor(Y,Z).
+
+% predesessor( irene , X)
+predecessor(X,Z):-parent(X,Z).
+predecessor(X,Z):-parent(X,Y),predecessor(Y,Z).
+
+% sister( X , variable)
 sister(X,Y):-parent(Z,X) , parent(Z,Y) , X\=Y,female(Y).
+
 
 % parent(Parent, Child)
 %
