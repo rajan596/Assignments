@@ -81,6 +81,14 @@ olderbrother(X,sandra).
 false.
 
 11.  Find the predecessors of Kyle.
+%predecessor(X,Z):-parent(X,Z).
+%predecessor(X,Z):-parent(X,Y),predecessor(Y,Z).
+
+predecessor(X,kyle).
+Ans :
+X = peter ;
+X = albert ;
+X = irene ;
 
 12.  Does Kate have a sister? 
 % sister(X,Y):-parent(Z,X) , parent(Z,Y) , X\=Y,female(Y).
@@ -90,7 +98,10 @@ X = sandra ;
 false.
 
 13. How many females and males are there in the knowledge base?
-
+aggregate_all(count , female(X),Count) , aggregate_all(count,male(X),Count1).
+Ans:
+Count = 7,
+Count1 = 8.
 
 ****************************************  (( familytree.pl  )) **********************************
 
