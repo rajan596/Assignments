@@ -163,7 +163,7 @@ male(kyle).
 
 
 % yearOfBirth(Person, Year).
-%
+
 yearOfBirth(irene, 1923).
 yearOfBirth(pat, 1954).
 yearOfBirth(lee, 1970).
