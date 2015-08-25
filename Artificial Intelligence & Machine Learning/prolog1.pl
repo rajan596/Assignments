@@ -68,6 +68,12 @@ X = peter ;
 X = albert ;
 X = irene ;
 
+predecessor(X,kyle).
+Ans :
+X = peter ;
+X = albert ;
+X = irene ;
+
 12.  Does Kate have a sister? 
 % sister(X,Y):-parent(Z,X) , parent(Z,Y) , X\=Y,female(Y).
 sister(kate,X).
