@@ -1,0 +1,27 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; load no at 2800H
+MVI A,02H
+STA 2800H
+
+RAR      ; rotate right
+JNC ODD  ; if no%2==0 ? C=0 : C=1 
+MVI A,0FFH ; even no
+JMP END
+
+ODD: nop
+MVI A,00H  ; odd no
+
+END: nop
+STA 2810H
+
+hlt

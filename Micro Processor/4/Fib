@@ -1,0 +1,47 @@
+
+; Fibonacci Series Generation
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI B,00H ; f0
+MVI H,01H ; f1
+MVI C,50H ; counter
+
+LXI D,2700H  ; memory location
+
+; store f0
+MOV A,B
+STAX D
+INX D
+DCR C
+
+; store f1
+MOV A,H
+STAX D
+INX D
+DCR C
+
+LOOP: nop
+
+; f2 = f0 + f1
+LDA 00H
+ADC B
+ADC H
+
+MOV B,H  ; f0=f1
+MOV H,A  ; f1=f2
+
+STAX  D   ; store f2
+
+; C==0 ? exit : LOOP
+DCR C  ; C--
+INX D
+JNZ LOOP
+
+hlt

@@ -1,0 +1,21 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; store 00H at 2510H
+MVI A,00H
+STA 2510H
+
+; transfer 00H from 2510H to 2500H
+LXI B,2510H   ; B= *(2510)
+LDAX B        ; A=B
+STA 2500H     ; *(2500)=A
+
+hlt

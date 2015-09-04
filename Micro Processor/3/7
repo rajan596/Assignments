@@ -1,0 +1,22 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+
+; logic : add B in A C times
+
+start: nop
+MVI A,00H  ; ans
+MVI B,08H  ; no1
+MVI C,02H  ; no2
+
+LOOP: ADC B ; add B
+DCR C       ; C--
+JNZ LOOP    ; if C > 0 =>LOOP
+
+hlt

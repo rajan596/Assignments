@@ -1,0 +1,21 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+LXI H,6000H
+LXI D,6006H
+
+MOV B,M   ; B = *(HL)
+LDAX D    ; A= (*DE)
+MOV M,A   ; *(HL) = A
+MOV A,B   ; A= B
+STAX D    ; (*DE) = A
+
+hlt

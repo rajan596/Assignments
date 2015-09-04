@@ -1,0 +1,26 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI B,00H   ;  B stores answer
+MVI C,08H   ;  C is counter
+MVI D,05H   
+
+MOV A,D
+
+LOOP: nop
+RAR       ; right shift with carry
+JNC SKIP  ; Jump on no carry
+INR B     ; increament count
+SKIP: nop
+DCR C     ; Decrement Counter 
+JNZ LOOP  ; jump on no zero
+
+hlt

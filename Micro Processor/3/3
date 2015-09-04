@@ -1,0 +1,57 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; initialization
+
+LXI H,6000H  ; set memory pointer to 6000H
+MVI C,00H    ; Counter = 0
+
+MVI B,00H   ; To count zero 
+MVI D,00H    ; To count positive
+MVI E,00H    ; To count negative
+
+LOOP: MOV A,M   ; load memory data in accumulator
+CPI 00H         ; compare with 0
+JZ ZEROCOUNT    ; if accumulator == 0
+
+; n < 0 ??
+ANI 80H        ; Acc & (1000 0000) 
+JNZ NEGNUM     ; if no neg => acc 1 => go to neg no
+INR D          ; n > 0 since acc=0  
+JMP LAST
+
+NEGNUM: nop
+INR E          ; positive count 
+JMP LAST
+
+; n==0 ?
+ZEROCOUNT: INR B ; increament B
+JMP LAST
+
+; n<0
+
+LAST: nop
+INX H       ; increament memory location
+INR C       ; increament counter
+
+MOV A,C
+CPI 32H     ; if acc == 50 ??
+JNZ LOOP
+
+; store answers
+LXI H,7000H  ; H=6000H
+MOV M,E
+INX H
+MOV M,B
+INX H
+MOV M,D
+
+hlt

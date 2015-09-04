@@ -1,0 +1,29 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI B,00H   ; answer
+MVI E,08H   ; counter
+LXI H,2800H ; memory pointer
+
+LOOP: nop
+MOV A,M     ; load value in acc
+XRI 55H     ; no == 55h ? 
+JNZ INC_MEM_POINTER 
+INR B       ; no=55H so increament B 
+
+INC_MEM_POINTER: nop
+INX H       ; H++
+DCR E       ; E--
+MOV A,E
+XRI 00H
+JNZ LOOP
+
+hlt

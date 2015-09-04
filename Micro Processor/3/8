@@ -1,0 +1,38 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+MVI B,03H   ; no1
+MVI C,02H   ; no2
+MVI D,08H   ; counter
+MVI E,00H   ; temp ans
+
+LOOP: MOV A,C
+RAL         ; rotate acc left through carry 
+MOV C,A
+JC ABC      ; if C==1 => goto ABC
+
+; if C==0 then just left shift of partial ans (E)
+MOV A,E
+RAL
+MOV E,A
+JMP NEXT
+
+; C=1 so Left shift and than ADD B
+ABC: MOV A,E
+RLC
+ADD B
+MOV E,A
+
+NEXT: DCR D
+MOV A,D
+XRI 00H
+JNZ LOOP
+
+hlt
