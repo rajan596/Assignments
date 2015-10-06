@@ -2,7 +2,7 @@
 
 <?php
 
-echo "Welcome to blog <br>";
+echo "Welcome to Rajan's Blog<br>";
 
 session_start();
 
