@@ -1,0 +1,28 @@
+
+; 4- 2) unpack BCD
+; lower bits : 2001h
+; higher bits : 2002h
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; lower side
+LDA 2000H
+ANI 0FH
+STA 2001H
+
+; higher side
+LDA 2000H
+ANI 0F0H
+RRC 
+RRC
+RRC
+RRC
+STA 2002H
+
+hlt

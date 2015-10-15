@@ -1,0 +1,25 @@
+
+; 5-3
+; sum of sequence
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+lda 2102h
+mov c,a       ; counter
+
+lxi d,2103h   ; memory pointer
+mvi h,00h     ; store sum in h
+
+loop: nop
+dad d         ; hl =hl + de
+inx d
+dcr c
+jnz loop
+
+hlt

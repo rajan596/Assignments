@@ -1,0 +1,34 @@
+
+; pack 2 unpacked BCD (4-1)
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; load and <<<<
+; higher bit
+LDA 2001H
+RLC
+RLC
+RLC
+RLC
+
+; get left most 4 digits and add in C
+; lower bit
+ANI 0F0H
+MVI C,00H
+MOV C,A
+
+; Add 4200H 
+LDA 2000H
+ANI 0FH
+ADD C
+
+; store
+STA 2003H
+
+hlt

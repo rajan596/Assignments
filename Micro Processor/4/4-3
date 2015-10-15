@@ -1,0 +1,41 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+; outer counter
+MVI B, 0AH   ; Initialize counter  1 
+
+STARTAGAIN: nop
+LXI H, 2200H ; Initialize memory pointer
+
+; inner counter
+MVI C, 0AH   ; Initialize counter 2
+
+BACK: nop
+MOV A, M      ; Get the number
+INX H         ; Increment memory pointer
+CMP M         ; Compare number with next number
+JC SKIP       ; If less, don't interchange
+JZ SKIP       ; If equal, don't interchange
+
+; interchange
+MOV D, M
+MOV M, A
+DCX H
+MOV M, D
+INX H          ; Interchange two numbers
+
+SKIP: nop
+DCR C     ; Decrement counter 2
+JNZ BACK       ; If not zero, repeat
+DCR B          ; Decrement counter 1
+JNZ STARTAGAIN
+
+HLT            ; Terminate program execution

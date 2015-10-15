@@ -1,0 +1,26 @@
+
+;copy data using ldax , stax
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+mvi c,05h    ; counter
+lxi b,3000h  ; source pointer
+lxi d,3010h  ; dest pointer
+
+loop: nop
+ldax b      ; load from *b and store in *d
+stax d
+
+inx b
+inx d
+
+dcr c
+jnz loop
+
+hlt
