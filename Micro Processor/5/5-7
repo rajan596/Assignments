@@ -1,24 +1,31 @@
+; Ass 5-7
+; find squares
 
-; square of a given no
+LXI B,6100H	; N
+LXI D,7000H	; N*N stored here
 
-jmp start
+UP1: nop
+LXI H,0000H     ; hl=0
+LDAX B		; acc = N
+ADI 00H		; 
+JZ EXIT		; LOCATION IS NOT ZERO
+MOV E,A
+MOV L,A
 
-;data
+; N*N
+UP: nop
+DCR L		; DO SQUARE OF GIVEN NUM
+JZ DOWN 	; BY ADDITON
+ADC E
+JNC NEXT
+INR H
+NEXT: JMP UP
 
+DOWN: MOV E,C	; STORE RESULT 
 
-;code
-start: nop
-
-lxi b,6100h ; source
-lxi d,7000h ; destination
-
-up1: nop
-ldax b     ; load *b
-jz exit    ; if *b==0 then exit
-
-
-
-
-exit: nop
+STAX D
+INX B
+JMP UP1;
+EXIT: nop
 
 hlt

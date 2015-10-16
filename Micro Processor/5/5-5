@@ -1,14 +1,28 @@
-
-; store in reverse order
-
-jmp start
-
-;data
+; Write a program to transfer the block of 
+; data in reverse order at same memory location.
 
 
-;code
-start: nop
+LXI H,0606H; counter for the two loop
+LXI B,3055H; set the memory pointer
+LXI D,305EH
 
+UP: nop
+LDAX B   ; take data from memory
+STAX D   ; store it in other location
+INX B    ; increment mem pointer
+INX D    ; incement another location
+DCR H    ; 
+JNZ UP   ;
+LXI B,3055H
+DCX D
+
+UP1: nop
+LDAX D; store in reverse order
+STAX B   ;store in the same location
+DCX D
+INX B
+DCR L
+JNZ UP1  ; repeat
 
 
 hlt

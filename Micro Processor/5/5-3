@@ -1,7 +1,4 @@
-
-; assignment : 5-3
-; sum of sequence
-; sum stored at : 2000h(LSB) and 2001H(MSB)
+;<ASSIGN5.3>
 
 jmp start
 
@@ -11,23 +8,28 @@ jmp start
 ;code
 start: nop
 
-lda 2102h     ; block size is stored here
-mov c,a       ; counter
+LDA 2102H		;take value from 2102H	
+LXI H,0000H		;and check if value is zero
+MOV B,A			;return ans zero means sum 
+ADI 00H			;is zero
+JZ EXIT
 
-lxi d,2103h   ; memory pointer
-mvi h,00h     ; store sum in h
-mvi l,00h
-
-loop: nop
-dad d        ; hl =hl + de
-inx d
-dcr c
-jnz loop
-
-MOV A,H
+LXI D,2102H		;upto next it goes to last 
+MOV A,B			;it store last location of mem
+ADD E			;upto where which we have 
+JNC NEXT		;to do addition
+INR D
+NEXT: MOV E,A
+UP: LDAX D		;it load value from mem
+MOV C,A			;location and do 16-bit 
+MVI B,00H		;addition
+DAD B
+DCX D
+MOV A,E
+CPI 02H
+JNZ UP
+EXIT: MOV A,H		;store result at 2101H and
+STA 2101H		;2100H according to given
+MOV A,L			;problem
 STA 2100H
-
-MOV A,L
-STA 2101H
-
-hlt
+HLT
