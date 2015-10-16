@@ -1,0 +1,21 @@
+
+;<ASSIGN5.1>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+LXI B,3000H
+MVI H,05H
+LXI D,3200H
+UP: LDAX B
+STAX D
+INX B
+INX D
+DCR H
+JNZ UP
+
+hlt

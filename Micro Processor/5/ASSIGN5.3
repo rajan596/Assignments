@@ -1,0 +1,25 @@
+
+;<ASSIGN5.3>
+
+
+
+LDA 2102H; counter
+LXI D,0000H; set D reg to zero
+MOV B,A;set B as a counter
+ADI 00H
+JZ EXIT
+
+LXI H,2103H; take data from 2103h
+UP: MOV A,E; put the sum into acc
+ADD M; add the data from memory into acc
+MOV E,A; store the sum into E
+JNC NEXT;
+INR D; if there is an overflow
+NEXT: INX H; go to the next memory location
+DCR B; decrement the counter
+JNZ UP; continue loop
+EXIT: MOV A,D; it is the msb
+STA 2101H
+MOV A,E; it is the lsb
+STA 2100H
+HLT

@@ -1,0 +1,31 @@
+
+;<ASSIGN5.4>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+MVI C,00H
+LDA 2501H; counter
+MOV B,A; set B reg as a counter
+ADI 00H
+JZ EXIT; if counter is 0
+XRA A; set acc to zero
+LXI H,2502H; store the address in H
+UP: MOV A,M; transfer it to acc
+CMP C; compare it with content of C
+JNC ZERO; if carry flag is zero go to zero
+JMP NEXT
+ZERO: JNZ SWAP; if zero flag is not zero then swap
+JMP NEXT
+SWAP: MOV C,A; sore the max in c
+NEXT: INX H; increment memory
+DCR B; decr counter
+JNZ UP
+EXIT: MOV A,C
+STA 2500H
+HLT

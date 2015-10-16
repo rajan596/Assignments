@@ -1,0 +1,36 @@
+
+;<ASSIGN5.3>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+LDA 2102H		;take value from 2102H	
+LXI H,0000H		;and check if value is zero
+MOV B,A			;return ans zero means sum 
+ADI 00H			;is zero
+JZ EXIT
+
+LXI D,2102H		;upto next it goes to last 
+MOV A,B			;it store last location of mem
+ADD E			;upto where which we have 
+JNC NEXT		;to do addition
+INR D
+NEXT: MOV E,A
+UP: LDAX D		;it load value from mem
+MOV C,A			;location and do 16-bit 
+MVI B,00H		;addition
+DAD B
+DCX D
+MOV A,E
+CPI 02H
+JNZ UP
+EXIT: MOV A,H		;store result at 2101H and
+STA 2101H		;2100H according to given
+MOV A,L			;problem
+STA 2100H
+HLT

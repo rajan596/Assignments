@@ -1,0 +1,23 @@
+
+;<Program title>
+
+
+LXI B,6100H; number to be squared
+LXI D,7000H; store the result here
+UP1: LXI H,0000H
+LDAX B; take the number in acc
+ADI 00H;IT RUN UNTIL VALUE AT MEM 
+JZ EXIT;LOCATION IS NOT ZERO
+MOV E,A
+MOV L,A
+UP: DCR L;DO SQUARE OF GIVEN NUM
+JZ DOWN ;BY ADDITON
+ADC E
+JNC NEXT
+INR H
+NEXT: JMP UP
+DOWN: MOV E,C;STORE RESULT 
+STAX D
+INX B
+JMP UP1;
+EXIT: hlt
