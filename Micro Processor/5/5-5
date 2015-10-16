@@ -1,0 +1,14 @@
+
+; store in reverse order
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+
+
+hlt
