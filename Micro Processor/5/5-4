@@ -1,0 +1,34 @@
+
+;Ass 5-4
+; find largest element in block of data
+; store largest value at : 2500h
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+lda 2501h  ; length stored at this location
+mov c,a      ; length of block
+
+lxi h,2502h  ; starting pointer
+mvi b,00h    ; stores max no
+
+loop: nop
+
+mov a,m
+sub b
+jc skip   ; if acc > b => skip 
+mov b,m   ; else b=*(hl)
+
+skip: nop
+inx h
+dcr c     ; if c==0 break
+jnz loop  ; else goto loop
+
+mov a,b
+sta 2500h
+hlt
