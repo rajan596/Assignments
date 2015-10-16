@@ -1,0 +1,68 @@
+; arrange nos. in accending and descending order
+; assending : 2000H
+; descending :3000H
+
+jmp start
+
+;data
+
+;code
+start: nop
+JMP SORT     ; sort datain non decreasing order
+	     ; sorts 10 nos. starting from 2200H
+	     ; and stores at 2200H
+
+AFTER_SORTING: nop
+; copy data from [200AH - 2000H ] to [3000H-300AH]
+; H is at 200AH after sorting 
+MVI C,0AH    ; counter  
+LXI D,3000H
+
+AGAIN: nop
+
+MOV A,M     ; acc = *(hl)
+STAX D      ; *(dl) = acc
+
+DCX H       ; HL--
+INX D       ; DE++
+
+DCR C      ; c--
+JNZ AGAIN  ; if c==0 break
+
+JMP EXIT
+; ---------------------------------------------
+; programme for sorting
+SORT: nop
+
+; outer counter
+MVI B, 0AH   ; Initialize counter  1 
+
+STARTAGAIN: nop
+LXI H, 2000H ; Initialize memory pointer
+
+; inner counter
+MVI C, 0AH   ; Initialize counter 2
+
+BACK: nop
+MOV A, M      ; Get the number
+INX H         ; Increment memory pointer
+CMP M         ; Compare number with next number
+JC SKIP       ; If less, don't interchange
+JZ SKIP       ; If equal, don't interchange
+
+; interchange
+MOV D, M
+MOV M, A
+DCX H
+MOV M, D
+INX H          ; Interchange two numbers
+
+SKIP: nop
+DCR C     ; Decrement counter 2
+JNZ BACK       ; If not zero, repeat
+DCR B          ; Decrement counter 1
+JNZ STARTAGAIN
+JMP AFTER_SORTING
+
+EXIT: nop
+HLT            ; Terminate program execution

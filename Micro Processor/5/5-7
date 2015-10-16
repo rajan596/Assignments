@@ -1,0 +1,24 @@
+
+; square of a given no
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+
+lxi b,6100h ; source
+lxi d,7000h ; destination
+
+up1: nop
+ldax b     ; load *b
+jz exit    ; if *b==0 then exit
+
+
+
+
+exit: nop
+
+hlt
