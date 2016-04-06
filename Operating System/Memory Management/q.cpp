@@ -227,7 +227,7 @@ bool MemoryAllocation::allocate_memory_bestfit(int pid,int bsize){
             fhead=fhead->next;
             free(bestfitnode);
         }else {
-            bestfitnode->end_addr=bestfitnode->start_addr+bsize;
+            bestfitnode->start_addr=bestfitnode->start_addr+bsize;
         }
     }
     else {
