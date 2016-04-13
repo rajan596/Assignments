@@ -58,6 +58,9 @@ class SRTF{
         void schedule();
 };
 
+/*
+    Parameters : process_id , total_cpu_time , attival_time
+*/
 void SRTF::insertProcess(int pid,int ctime,int atime){
     Node *temp=new Node(pid,ctime,atime);
     buffer.push(temp);
@@ -69,24 +72,27 @@ void SRTF::schedule(){
 
     printf("%20s%20s%20s\n","Time","processID","RemainedBurstTime");
 
-    while(!q.empty() || t==0){
+    while(!(q.empty() && buffer.empty())){
         /* load processes from buffer */
-        temp=buffer.top();
-        while(!buffer.empty() && temp->arrival_time == t){
-            q.push(temp);
-            buffer.pop();
+        if(!buffer.empty()) {
             temp=buffer.top();
+            while(!buffer.empty() && temp->arrival_time == t){
+                q.push(temp);
+                buffer.pop();
+                temp=buffer.top();
+            }
         }
 
-        temp=q.top();
-        q.pop();
-        temp->cpu_time--;
+        if(!q.empty()) {
+            temp=q.top();
+            q.pop();
+            temp->cpu_time--;
 
-        printf("%20d%20d%20d\n",t,temp->pid,temp->cpu_time);
+            printf("%20d%20d%20d\n",t,temp->pid,temp->cpu_time);
 
-        if(temp->cpu_time!=0)
-            q.push(temp);
-
+            if(temp->cpu_time!=0)
+                q.push(temp);
+        }
         t++;
     }
 }
@@ -95,8 +101,8 @@ int main(){
 
     SRTF *s1=new SRTF();
 
-    s1->insertProcess(1,5,0);
-    s1->insertProcess(2,2,1);
+    s1->insertProcess(1,5,5);
+    s1->insertProcess(2,2,15);
     //s1->insertProcess(3,10,3);
     //s1->insertProcess(4,6,6);
 
